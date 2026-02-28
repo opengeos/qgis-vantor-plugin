@@ -701,7 +701,12 @@ class VantorMainDock(QDockWidget):
             deselected: List of deselected feature IDs.
             clear_and_select: Whether this is a clear-and-select operation.
         """
-        if self._updating_selection or not selected:
+        if self._updating_selection:
+            return
+
+        if not selected:
+            self._highlighter.clear()
+            self.results_table.clearSelection()
             return
 
         self._updating_selection = True
@@ -772,15 +777,26 @@ class VantorMainDock(QDockWidget):
             self.status_label.setStyleSheet("color: #f0a030; font-size: 10px;")
             return
 
+        # Collect existing layer names to avoid duplicates
+        existing_names = {
+            lyr.name()
+            for lyr in QgsProject.instance().mapLayers().values()
+        }
+
         added = 0
+        skipped = 0
         for _, item in checked:
             cog_url = stac_client.get_cog_url(item)
             if not cog_url:
                 continue
 
             item_id = item.get("id", "Unknown")
-            vsicurl_url = f"/vsicurl/{cog_url}"
 
+            if item_id in existing_names:
+                skipped += 1
+                continue
+
+            vsicurl_url = f"/vsicurl/{cog_url}"
             layer = QgsRasterLayer(vsicurl_url, item_id)
             if layer.isValid():
                 QgsProject.instance().addMapLayer(layer)
@@ -793,8 +809,19 @@ class VantorMainDock(QDockWidget):
         # Clear the yellow highlight rubber band
         self._highlighter.clear()
 
-        self.status_label.setText(f"Added {added} raster layer(s).")
-        self.status_label.setStyleSheet("color: #4ccd6a; font-size: 10px;")
+        if skipped and not added:
+            self.status_label.setText(
+                f"All {skipped} layer(s) already loaded."
+            )
+            self.status_label.setStyleSheet("color: #f0a030; font-size: 10px;")
+        elif skipped:
+            self.status_label.setText(
+                f"Added {added} raster layer(s), skipped {skipped} already loaded."
+            )
+            self.status_label.setStyleSheet("color: #4ccd6a; font-size: 10px;")
+        else:
+            self.status_label.setText(f"Added {added} raster layer(s).")
+            self.status_label.setStyleSheet("color: #4ccd6a; font-size: 10px;")
 
     def _download_selected(self):
         """Download checked COG files to disk."""
