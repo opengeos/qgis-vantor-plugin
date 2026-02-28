@@ -5,7 +5,7 @@
 
 A QGIS plugin for searching, visualizing, and downloading data from the [Vantor Open Data](https://radiantearth.github.io/stac-browser/#/external/vantor-opendata.s3.amazonaws.com/events/catalog.json) STAC catalog.
 
-![](https://github.com/user-attachments/assets/360372f7-3287-432e-92ce-4bff1869d1f8)
+![](https://github.com/user-attachments/assets/16b0dc7f-c77b-4cc2-bfa7-76e068b5a115)
 
 ## Features
 
@@ -50,7 +50,7 @@ Then restart QGIS and enable the **Vantor** plugin in **Plugins > Manage and Ins
 5. Click on a table row to highlight the footprint on the map (and vice versa)
 6. Check items and click **Visualize** to stream COG imagery or **Download** to save to disk
 
-![](https://github.com/user-attachments/assets/39c45160-66bd-4ca4-b669-1e06ee74850f)
+![](https://github.com/user-attachments/assets/450afdde-a592-4b7d-8b0b-19f2d7bb1131)
 
 ## Packaging
 
