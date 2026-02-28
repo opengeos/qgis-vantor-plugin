@@ -1,0 +1,44 @@
+[general]
+name=Vantor
+qgisMinimumVersion=3.28
+description=A QGIS plugin for searching, visualizing, and downloading data from the Vantor Open Data STAC catalog.
+version=0.1.0
+author=Qiusheng Wu
+email=giswqs@gmail.com
+
+about=Browse and visualize satellite imagery from the Vantor Open Data Program.
+
+    Features:
+    - Browse disaster event collections from the Vantor STAC catalog
+    - Search imagery by map extent or drawn bounding box
+    - Filter by event and pre/post-event phase
+    - Visualize Cloud-Optimized GeoTIFF (COG) imagery directly in QGIS
+    - Download selected imagery to disk
+    - Interactive footprint display with bidirectional table/map selection
+    - One-click dependency installer using uv for fast cross-platform package management
+
+    Requirements:
+    - Python packages: pystac (installed automatically via Settings > Dependencies)
+
+tracker=https://github.com/opengeos/qgis-vantor-plugin/issues
+repository=https://github.com/opengeos/qgis-vantor-plugin
+
+hasProcessingProvider=no
+
+tags=stac, satellite, imagery, disaster, vantor, open data, COG, remote sensing
+
+homepage=https://github.com/opengeos/qgis-vantor-plugin
+category=Web
+icon=icons/icon.svg
+
+experimental=False
+deprecated=False
+
+changelog=
+    0.1.0 - Initial release
+        - Browse Vantor Open Data STAC catalog
+        - Search by map extent or drawn bounding box
+        - Filter by event and pre/post-event phase
+        - Visualize COG imagery directly in QGIS
+        - Download selected imagery
+        - One-click dependency installer
