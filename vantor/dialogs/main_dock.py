@@ -779,8 +779,7 @@ class VantorMainDock(QDockWidget):
 
         # Collect existing layer names to avoid duplicates
         existing_names = {
-            lyr.name()
-            for lyr in QgsProject.instance().mapLayers().values()
+            lyr.name() for lyr in QgsProject.instance().mapLayers().values()
         }
 
         added = 0
@@ -810,9 +809,7 @@ class VantorMainDock(QDockWidget):
         self._highlighter.clear()
 
         if skipped and not added:
-            self.status_label.setText(
-                f"All {skipped} layer(s) already loaded."
-            )
+            self.status_label.setText(f"All {skipped} layer(s) already loaded.")
             self.status_label.setStyleSheet("color: #f0a030; font-size: 10px;")
         elif skipped:
             self.status_label.setText(
