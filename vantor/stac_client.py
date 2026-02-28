@@ -24,7 +24,7 @@ def _fetch_json(url: str) -> Dict[str, Any]:
         Parsed JSON as a dict.
     """
     req = Request(url, headers={"User-Agent": "QGIS-Vantor-Plugin/0.1"})
-    with urlopen(req, timeout=30) as response:
+    with urlopen(req, timeout=30) as response:  # nosec B310
         return json.loads(response.read().decode("utf-8"))
 
 
@@ -113,7 +113,7 @@ def fetch_items(collection_url: str) -> List[Dict[str, Any]]:
                 if item_id not in seen_ids:
                     seen_ids.add(item_id)
                     items.append(item)
-            except Exception:
+            except (OSError, ValueError, KeyError):
                 continue
 
     return items

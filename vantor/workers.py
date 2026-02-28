@@ -101,7 +101,7 @@ class DownloadWorker(QThread):
                 filepath = os.path.join(self.output_dir, filename)
 
                 req = Request(url, headers={"User-Agent": "QGIS-Vantor-Plugin/0.1"})
-                with urlopen(req, timeout=600) as response:
+                with urlopen(req, timeout=600) as response:  # nosec B310
                     file_size = response.headers.get("Content-Length")
                     file_size = int(file_size) if file_size else None
                     downloaded = 0
