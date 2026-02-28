@@ -11,7 +11,7 @@ import os
 import sys
 import platform
 import stat
-import subprocess
+import subprocess  # nosec B404
 import tarfile
 import zipfile
 import tempfile
@@ -305,7 +305,7 @@ def verify_uv() -> Tuple[bool, str]:
             startupinfo.wShowWindow = subprocess.SW_HIDE
             kwargs["startupinfo"] = startupinfo
 
-        result = subprocess.run(
+        result = subprocess.run(  # nosec B603
             [uv_path, "--version"],
             capture_output=True,
             text=True,

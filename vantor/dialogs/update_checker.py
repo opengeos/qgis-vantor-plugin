@@ -44,7 +44,7 @@ class VersionCheckWorker(QThread):
     def run(self):
         """Fetch the latest metadata from GitHub."""
         try:
-            with urlopen(METADATA_URL, timeout=15) as response:
+            with urlopen(METADATA_URL, timeout=15) as response:  # nosec B310
                 content = response.read().decode("utf-8")
 
             version_match = re.search(r"^version=(.+)$", content, re.MULTILINE)
@@ -106,7 +106,7 @@ class DownloadWorker(QThread):
                     percent = min(int((downloaded / total_size) * 50), 50)
                     self.progress.emit(10 + percent, "Downloading...")
 
-            urlretrieve(ZIP_URL, zip_path, reporthook)
+            urlretrieve(ZIP_URL, zip_path, reporthook)  # nosec B310
 
             self.progress.emit(60, "Extracting files...")
 

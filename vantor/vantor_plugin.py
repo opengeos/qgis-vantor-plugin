@@ -255,7 +255,7 @@ class VantorPlugin:
                 version_match = re.search(r"^version=(.+)$", content, re.MULTILINE)
                 if version_match:
                     version = version_match.group(1).strip()
-        except Exception:
+        except (OSError, ValueError):
             pass
 
         about_text = f"""
