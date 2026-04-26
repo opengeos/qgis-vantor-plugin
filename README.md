@@ -19,6 +19,8 @@ A QGIS plugin for searching, visualizing, and downloading data from the [Vantor 
 
 ## Installation
 
+Compatible with QGIS 3.28+ on Qt5 and QGIS 4.0+ on Qt6.
+
 ### From QGIS Plugin Repository
 
 1. Open QGIS Plugin Manager and search for "Vantor"
