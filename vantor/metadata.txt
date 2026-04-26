@@ -1,8 +1,9 @@
 [general]
 name=Vantor
 qgisMinimumVersion=3.28
+qgisMaximumVersion=4.99
 description=A QGIS plugin for searching, visualizing, and downloading data from the Vantor Open Data STAC catalog.
-version=0.1.0
+version=0.2.0
 author=Qiusheng Wu
 email=giswqs@gmail.com
 
@@ -35,6 +36,9 @@ experimental=False
 deprecated=False
 
 changelog=
+    0.2.0 - QGIS 4.0 / Qt6 compatibility
+        - Plugin now loads on both QGIS 3.28+ (Qt5) and QGIS 4.0 (Qt6)
+        - Fully-qualified Qt enums for Qt6 compatibility
     0.1.0 - Initial release
         - Browse Vantor Open Data STAC catalog
         - Search by map extent or drawn bounding box

@@ -54,7 +54,9 @@ class VantorMainDock(QDockWidget):
         self.iface = iface
         self.canvas = iface.mapCanvas()
 
-        self.setAllowedAreas(Qt.LeftDockWidgetArea | Qt.RightDockWidgetArea)
+        self.setAllowedAreas(
+            Qt.DockWidgetArea.LeftDockWidgetArea | Qt.DockWidgetArea.RightDockWidgetArea
+        )
 
         # State
         self._events = []
@@ -88,7 +90,7 @@ class VantorMainDock(QDockWidget):
         header_font.setPointSize(11)
         header_font.setBold(True)
         header_label.setFont(header_font)
-        header_label.setAlignment(Qt.AlignCenter)
+        header_label.setAlignment(Qt.AlignmentFlag.AlignCenter)
         layout.addWidget(header_label)
 
         # Search section
